@@ -1,82 +1,85 @@
 #include <stdio.h>
-#include <string.h>
-//Declaração das estruturas de dados
-//é uma estrutura (`struct`) para representar os dados de uma cidade. Isso evita a repetição de variáveis e facilita a manipulação dos dados.
-typedef struct {
-    char estado[3];
-    char codigo[20];
-    char nomeCidade[25];
-    int populacao;
-    float area;
-    float pib;
-    int pontosTuristicos;
-    float densidadepopulacional;
-    float pibperCapita;
-} Cidade;
-//Função para ler os dados de uma cidade
-//é uma função para ler os dados de uma cidade. Isso evita a repetição de código e facilita a leitura dos dados.
 
-void calcularMetricas(Cidade *cidade) {
-    cidade->densidadepopulacional = cidade->populacao / cidade->area;
-    cidade->pibperCapita = cidade->pib / cidade->populacao;
-}
-//Função para exibir os dados de uma cidade
-//Criaremos uma função para exibir os dados de uma cidade. Isso também evita a repetição de código
-void exibirDadosCidade(Cidade cidade, int numerocarta) {
-    printf("\nCarta %d:\n", numerocarta);
-    printf("Estado: %s\n", cidade.estado);
-    printf("Código: %s\n", cidade.codigo);
-    printf("Nome da Cidade: %s\n", cidade.nomeCidade);
-    printf("População: %d\n", cidade.populacao);
-    printf("Área: %.2f km²\n", cidade.area);
-    printf("PIB: %.2f bilhões de reais\n", cidade.pib);
-    printf("Pontos Turísticos: %d\n", cidade.pontosTuristicos);
-    printf("Densidade Populacional: %.2f hab/km²\n", cidade.densidadepopulacional);
-    printf("PIB per capita: %.2f bilhões/hab\n", cidade.pibperCapita);
-}
-//Função principal (`main`)
-//A função principal agora será responsável apenas por chamar as funções criadas anteriormente.
 int main() {
-    Cidade cidade1 = {"PE", "A01", "Recife", 9059000, 218.843, 650.0, 35};
-    Cidade cidade2 = {"RJ", "B02", "Rio de Janeiro", 6747815, 1200.25, 450.0, 45};
+    // Variáveis para a Cidade 1
+    char estado1, codigo1[4];
+    char nomeCidade1[50];
+    int populacao1, pontosTuristicos1;
+    float area1, pib1;
+    float densidade1, pibPerCapita1;
 
-    calcularMetricas(&cidade1);
-    calcularMetricas(&cidade2);
+    // Variáveis para a Cidade 2
+    char estado2, codigo2[4];
+    char nomeCidade2[50];
+    int populacao2, pontosTuristicos2;
+    float area2, pib2;
+    float densidade2, pibPerCapita2;
 
-    exibirDadosCidade(cidade1, 1);
-    exibirDadosCidade(cidade2, 2);
+    // Leitura dos dados da Cidade 1
+    printf("Digite os dados da Cidade 1:\n");
+    printf("Estado: ");
+    scanf(" %c", &estado1);
+    printf("Código: ");
+    scanf("%s", codigo1);
+    printf("Nome da Cidade: ");
+    scanf(" %[^\n]", nomeCidade1);
+    printf("População: ");
+    scanf("%d", &populacao1);
+    printf("Área (km²): ");
+    scanf("%f", &area1);
+    printf("PIB (bilhões de reais): ");
+    scanf("%f", &pib1);
+    printf("Número de Pontos Turísticos: ");
+    scanf("%d", &pontosTuristicos1);
 
-    char atributocomparacao[] = "populacao";
+    // Cálculos para a Cidade 1
+    densidade1 = populacao1 / area1;
+    pibPerCapita1 = (pib1 * 1e9) / populacao1; // Convertendo bilhões para unidades
 
-    if (strcmp(atributocomparacao, "populacao") == 0) {
-        printf("\nComparação de cartas (Atributo: População):\n");
-        printf("Carta 1 - %s (%s): %d\n", cidade1.nomeCidade, cidade1.estado, cidade1.populacao);
-        printf("Carta 2 - %s (%s): %d\n", cidade2.nomeCidade, cidade2.estado, cidade2.populacao);
+    // Leitura dos dados da Cidade 2
+    printf("\nDigite os dados da Cidade 2:\n");
+    printf("Estado: ");
+    scanf(" %c", &estado2);
+    printf("Código: ");
+    scanf("%s", codigo2);
+    printf("Nome da Cidade: ");
+    scanf(" %[^\n]", nomeCidade2);
+    printf("População: ");
+    scanf("%d", &populacao2);
+    printf("Área (km²): ");
+    scanf("%f", &area2);
+    printf("PIB (bilhões de reais): ");
+    scanf("%f", &pib2);
+    printf("Número de Pontos Turísticos: ");
+    scanf("%d", &pontosTuristicos2);
 
-        if (cidade1.populacao > cidade2.populacao) {
-            printf("Resultado: Carta 1 (%s) venceu!\n", cidade1.nomeCidade);
-        } else if (cidade1.populacao < cidade2.populacao) {
-            printf("Resultado: Carta 2 (%s) venceu!\n", cidade2.nomeCidade);
-        } else {
-            printf("Resultado: Empate!\n");
-        }
-    }
+    // Cálculos para a Cidade 2
+    densidade2 = populacao2 / area2;
+    pibPerCapita2 = (pib2 * 1e9) / populacao2; // Convertendo bilhões para unidades
+
+    // Exibição dos resultados para a Cidade 1
+    printf("\nCarta 1:\n");
+    printf("Estado: %c\n", estado1);
+    printf("Código: %s\n", codigo1);
+    printf("Nome da Cidade: %s\n", nomeCidade1);
+    printf("População: %d\n", populacao1);
+    printf("Área: %.2f km²\n", area1);
+    printf("PIB: %.2f bilhões de reais\n", pib1);
+    printf("Número de Pontos Turísticos: %d\n", pontosTuristicos1);
+    printf("Densidade Populacional: %.2f hab/km²\n", densidade1);
+    printf("PIB per Capita: %.2f reais\n", pibPerCapita1);
+
+    // Exibição dos resultados para a Cidade 2
+    printf("\nCarta 2:\n");
+    printf("Estado: %c\n", estado2);
+    printf("Código: %s\n", codigo2);
+    printf("Nome da Cidade: %s\n", nomeCidade2);
+    printf("População: %d\n", populacao2);
+    printf("Área: %.2f km²\n", area2);
+    printf("PIB: %.2f bilhões de reais\n", pib2);
+    printf("Número de Pontos Turísticos: %d\n", pontosTuristicos2);
+    printf("Densidade Populacional: %.2f hab/km²\n", densidade2);
+    printf("PIB per Capita: %.2f reais\n", pibPerCapita2);
 
     return 0;
 }
-//Explicação das etapas:
-//Estrutura de dados (`struct`):
-   //Agrupa todos os dados relacionados a uma cidade em um único tipo de dado.
-   //Facilita a passagem de dados para funções.
-
-//Função `lerDadosCidade`:
-   //Centraliza a leitura dos dados de uma cidade.
-   //Recebe um ponteiro para uma estrutura `Cidade` e preenche seus campos.
-
-//Função `exibirDadosCidade`:
-   //Centraliza a exibição dos dados de uma cidade.
-   //Recebe uma estrutura `Cidade` por valor e exibe seus campos.
-
-//Função `main`:
-   //Coordena a execução do programa.
-   //Chama as funções para ler e exibir os dados das duas cidades
